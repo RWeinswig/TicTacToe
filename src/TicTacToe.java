@@ -31,6 +31,7 @@ public class TicTacToe
                                 // following the win direction final variables above
     private int winIndex;       // Provides the index of the row/col of the win
     private int turn;
+    private TicTacToeViewer window;
 
     private Square[][] board;
     private boolean isGameOver;
@@ -42,6 +43,7 @@ public class TicTacToe
      * The view is initialized with this TicTacToe object
      */
     public TicTacToe() {
+        window = new TicTacToeViewer(this);
         // Initialize Squares in the board
         this.board = new Square[3][3];
         for(int row = 0; row < this.board.length; row++) {

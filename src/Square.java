@@ -1,3 +1,5 @@
+import java.awt.*;
+
 /**
  * A class written to support the TicTacToe Game.
  *
@@ -57,5 +59,14 @@ public class Square {
      */
     public String toString() {
         return this.marker;
+    }
+
+    public void draw(Graphics g) {
+        // TODO: Write the Fish's draw() method.
+        for (int i=0; i<3;i++) {
+            for (int x=0;x<3;x++) {
+
+            }
+        }
     }
 }
