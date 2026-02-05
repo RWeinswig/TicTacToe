@@ -27,7 +27,12 @@ public class TicTacToeViewer extends JFrame{
 
     }
 
-
-
-
+    @Override
+    public void paint(Graphics g) {
+        for (Square[] square: window.getBoard()) {
+            for (Square squares: square) {
+                squares.draw(g);
+            }
+        }
+    }
 }

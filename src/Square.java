@@ -62,10 +62,9 @@ public class Square {
     }
 
     public void draw(Graphics g) {
-        // TODO: Write the Fish's draw() method.
         for (int i=0; i<3;i++) {
             for (int x=0;x<3;x++) {
-
+                g.drawLine(100 + i*100, 100 + x*100, 200+i*100, 200 +x*100);
             }
         }
     }
