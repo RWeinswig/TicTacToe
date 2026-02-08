@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -18,6 +19,7 @@ public class Square {
     private int row;
     private int col;
     private boolean isWinningSquare;
+    private Image xImage, oImage;
 
     /**
      * Constructor to initialize one Square of the
@@ -31,6 +33,8 @@ public class Square {
 
         this.marker = TicTacToe.BLANK;
         this.isWinningSquare = false;
+        xImage = new ImageIcon("Resources/X.png").getImage();
+        oImage = new ImageIcon("Resources/O.png").getImage();
     }
 
     /******************** Getters and Setters ********************/
@@ -62,10 +66,19 @@ public class Square {
     }
 
     public void draw(Graphics g) {
-        for (int i=0; i<3;i++) {
-            for (int x=0;x<3;x++) {
-                g.drawLine(100 + i*100, 100 + x*100, 200+i*100, 200 +x*100);
-            }
+        int x= 100+ col*100;
+        int y= 100 + row * 100;
+
+        if (isWinningSquare) {
+            g.setColor(Color.green);
+            g.fillRect(x,y,100,100);
+        }
+
+        if (marker.equals(TicTacToe.X_MARKER)) {
+            g.drawImage(xImage, x+10, y+10, 80, 80, null);
+        }
+        else if (marker.equals(TicTacToe.O_MARKER)) {
+            g.drawImage(oImage, x+10, y+10, 80, 80, null);
         }
     }
 }

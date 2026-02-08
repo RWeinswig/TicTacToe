@@ -13,26 +13,63 @@ public class TicTacToeViewer extends JFrame{
     public static final int WINDOW_HEIGHT = 500;
 
     private TicTacToe window;
-    public TicTacToeViewer(TicTacToe window) {
-        this.window = window;
-        xImage = new ImageIcon("Resources/x.png").getImage();
-        oImage = new ImageIcon("Resources/o.png").getImage();
+    public TicTacToeViewer(TicTacToe game) {
+        this.game = game;
+        setTitle("Tic Tac Toe");
+        setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setVisible(true);
 
 
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setTitle("Tic Tac Toe");
-        this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-        this.setVisible(true);
-        createBufferStrategy(2);
 
     }
 
     @Override
     public void paint(Graphics g) {
-        for (Square[] square: window.getBoard()) {
-            for (Square squares: square) {
-                squares.draw(g);
+        super.paint(g);
+
+        drawBoard(g);
+        drawSquares(g);
+        drawWinner(g);
+    }
+
+    private void drawBoard(Graphics g) {
+        g.setColor(Color.BLACK);
+        g.drawString("0", 50, 150);
+        g.drawString("1", 50, 240);
+        g.drawString("2", 50, 340);
+
+        g.drawString("0", 135, 90);
+        g.drawString("1", 235, 90);
+        g.drawString("2", 335, 90);
+
+        for (int i = 0; i <= 3; i++) {
+            g.drawLine(100, 100 + i * 100, 400, 100 + i * 100);
+            g.drawLine(100 + i * 100, 100, 100 + i * 100, 400);
+        }
+}
+
+    private void drawSquares(Graphics g) {
+        for (Square[] row: game.getBoard()) {
+            for (Square s: row){
+                s.draw(g);
             }
         }
     }
+
+    private void drawWinner(Graphics g) {
+        if (game.getGameOver()) {
+            g.setFont(new Font("Arial", Font.BOLD, 20));
+            g.setColor(Color.BLACK);
+            if (game.checkTie()) {
+                g.drawString("It is a TIE!", 180, 480);
+
+            }
+            else{
+                g.drawString(game.getWinner() + " Wins!", 180, 480);
+            }
+
+        }
+    }
+
 }
